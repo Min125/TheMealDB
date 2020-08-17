@@ -12,11 +12,24 @@ import kotlinx.android.synthetic.main.item_filter.view.*
 
 class IngredientFilterAdapter (var areaList : List<MealXXXX> = ArrayList<MealXXXX>()) : RecyclerView.Adapter<IngredientFilterAdapter.IngredientFilterViewHolder>(){
 
+    var clickListener : ClickListener? = null
+
+    fun setOnClickListener (clickListener: ClickListener){
+        this.clickListener = clickListener
+    }
+
     fun updateIngredientFilter (areaList : List<MealXXXX>) {
         this.areaList = areaList
     }
 
-    class IngredientFilterViewHolder (itemView : View) : RecyclerView.ViewHolder (itemView) {
+    inner class IngredientFilterViewHolder (itemView : View) : RecyclerView.ViewHolder (itemView) , View.OnClickListener{
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        lateinit var meal : MealXXXX
+
         fun bind (meal : MealXXXX){
             itemView.filterName.text = meal.strMeal
             Picasso.get()
@@ -24,6 +37,10 @@ class IngredientFilterAdapter (var areaList : List<MealXXXX> = ArrayList<MealXXX
                 .fit()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(itemView.filterPhoto)
+        }
+
+        override fun onClick(p0: View?) {
+            clickListener?.onClick(meal)
         }
     }
 
@@ -38,6 +55,10 @@ class IngredientFilterAdapter (var areaList : List<MealXXXX> = ArrayList<MealXXX
 
     override fun onBindViewHolder(holder: IngredientFilterViewHolder, position: Int) {
         holder.bind(areaList[position])
+    }
+
+    interface ClickListener {
+        fun onClick (meal : MealXXXX)
     }
 
 }

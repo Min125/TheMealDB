@@ -12,6 +12,12 @@ import kotlinx.android.synthetic.main.item_filter.view.*
 
 class AreaAdapter (var areaList : List<MealXX> = ArrayList<MealXX>()) : RecyclerView.Adapter<AreaAdapter.AreaViewModel>(){
 
+    var clickListener : ClickListener? = null
+
+    fun setOnClickListener (clickListener: ClickListener) {
+        this.clickListener = clickListener
+    }
+
     fun updateAreaList (areaList : List<MealXX>) {
         this.areaList = areaList
     }
@@ -38,6 +44,10 @@ class AreaAdapter (var areaList : List<MealXX> = ArrayList<MealXX>()) : Recycler
 
     override fun onBindViewHolder(holder: AreaViewModel, position: Int) {
         holder.bind(areaList[position])
+    }
+
+    interface ClickListener {
+        fun onClick (meal : MealXX)
     }
 
 }

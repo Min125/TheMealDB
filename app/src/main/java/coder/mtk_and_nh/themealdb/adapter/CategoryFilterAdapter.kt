@@ -12,18 +12,36 @@ import kotlinx.android.synthetic.main.item_filter.view.*
 
 class CategoryFilterAdapter (var categoyList : List<MealXXXXX> = ArrayList<MealXXXXX>()) : RecyclerView.Adapter<CategoryFilterAdapter.CategroyFilterViewModel>(){
 
+    var clickListener : ClickListener? = null
+
+    fun setOnClickListener (clickListener: ClickListener){
+        this.clickListener = clickListener
+    }
+
     fun update (categoyList : List<MealXXXXX>) {
         this.categoyList = categoyList
     }
 
-    class CategroyFilterViewModel (itemView : View) : RecyclerView.ViewHolder (itemView) {
+    inner class CategroyFilterViewModel (itemView : View) : RecyclerView.ViewHolder (itemView) , View.OnClickListener{
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        lateinit var meal : MealXXXXX
+
         fun bind (meal : MealXXXXX){
+            this.meal=meal
             itemView.filterName.text = meal.strMeal
             Picasso.get()
                 .load(meal.strMealThumb)
                 .fit()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(itemView.filterPhoto)
+        }
+
+        override fun onClick(p0: View?) {
+            clickListener?.onClick(meal)
         }
     }
 
@@ -38,6 +56,10 @@ class CategoryFilterAdapter (var categoyList : List<MealXXXXX> = ArrayList<MealX
 
     override fun onBindViewHolder(holder: CategroyFilterViewModel, position: Int) {
         holder.bind(categoyList[position])
+    }
+
+    interface ClickListener {
+        fun onClick (meal: MealXXXXX)
     }
 
 }
