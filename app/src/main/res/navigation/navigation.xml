@@ -9,5 +9,60 @@
         android:id="@+id/mainFragment"
         android:name="coder.mtk_and_nh.themealdb.fragments.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_countryListFragment"
+            app:destination="@id/countryListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_ingredientListFragment"
+            app:destination="@id/ingredientListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_categoryFilterFragment"
+            app:destination="@id/categoryFilterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryListFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.CountryListFragment"
+        android:label="fragment_country_list"
+        tools:layout="@layout/fragment_country_list" >
+        <action
+            android:id="@+id/action_countryListFragment_to_areaFilterFragment"
+            app:destination="@id/areaFilterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/areaFilterFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.AreaFilterFragment"
+        android:label="fragment_area_filter"
+        tools:layout="@layout/fragment_area_filter" >
+        <argument
+            android:name="area"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientListFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.IngredientListFragment"
+        android:label="fragment_ingredient_list"
+        tools:layout="@layout/fragment_ingredient_list" >
+        <action
+            android:id="@+id/action_ingredientListFragment_to_ingredientFilterFragment"
+            app:destination="@id/ingredientFilterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ingredientFilterFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.IngredientFilterFragment"
+        android:label="fragment_ingredient_filter"
+        tools:layout="@layout/fragment_ingredient_filter" >
+        <argument
+            android:name="ingredient"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/categoryFilterFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.CategoryFilterFragment"
+        android:label="fragment_category_filter"
+        tools:layout="@layout/fragment_category_filter" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
 </navigation>
