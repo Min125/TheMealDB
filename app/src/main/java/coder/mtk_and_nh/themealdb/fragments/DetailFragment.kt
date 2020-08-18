@@ -30,7 +30,7 @@ class DetailFragment : Fragment() {
 lateinit var ingredient :String
 
         var arg = arguments.let { DetailFragmentArgs.fromBundle(it!!) }
-        var msg = arg.ArgToDetail
+        var msg = arg.id
 
         var apiClient = ApiClient()
         var apiCall = apiClient.getDetail(msg)

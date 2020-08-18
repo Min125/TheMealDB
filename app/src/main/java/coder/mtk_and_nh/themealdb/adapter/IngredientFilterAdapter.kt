@@ -31,6 +31,7 @@ class IngredientFilterAdapter (var areaList : List<MealXXXX> = ArrayList<MealXXX
         lateinit var meal : MealXXXX
 
         fun bind (meal : MealXXXX){
+            this.meal = meal
             itemView.filterName.text = meal.strMeal
             Picasso.get()
                 .load(meal.strMealThumb)

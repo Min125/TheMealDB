@@ -22,14 +22,26 @@ class AreaAdapter (var areaList : List<MealXX> = ArrayList<MealXX>()) : Recycler
         this.areaList = areaList
     }
 
-    class AreaViewModel (itemView : View) : RecyclerView.ViewHolder (itemView) {
+    inner class AreaViewModel (itemView : View) : RecyclerView.ViewHolder (itemView) , View.OnClickListener{
+
+        init {
+            itemView.setOnClickListener(this)
+        }
+
+        lateinit var meal: MealXX
+
         fun bind (meal : MealXX){
+            this.meal = meal
             itemView.filterName.text = meal.strMeal
             Picasso.get()
                 .load(meal.strMealThumb)
                 .fit()
                 .placeholder(R.drawable.ic_launcher_background)
                 .into(itemView.filterPhoto)
+        }
+
+        override fun onClick(p0: View?) {
+            clickListener?.onClick(meal)
         }
     }
 

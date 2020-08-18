@@ -8,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import coder.mtk_and_nh.themealdb.R
 import coder.mtk_and_nh.themealdb.adapter.AreaAdapter
+import coder.mtk_and_nh.themealdb.model.MealXX
 import coder.mtk_and_nh.themealdb.viewmodel.MealViewModel
 import kotlinx.android.synthetic.main.fragment_area_filter.*
 
 
-class AreaFilterFragment : Fragment() {
+class AreaFilterFragment : Fragment() , AreaAdapter.ClickListener{
 
     lateinit var viewModel: MealViewModel
     lateinit var areaAdapter : AreaAdapter
@@ -54,8 +56,12 @@ class AreaFilterFragment : Fragment() {
             }
         )
 
+        areaAdapter.setOnClickListener(this)
 
+    }
 
-
+    override fun onClick(meal: MealXX) {
+        var action = AreaFilterFragmentDirections.actionAreaFilterFragmentToDetailFragment(meal.idMeal)
+        findNavController().navigate(action)
     }
 }

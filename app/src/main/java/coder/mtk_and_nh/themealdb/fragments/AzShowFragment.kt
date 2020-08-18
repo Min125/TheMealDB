@@ -31,9 +31,9 @@ class AzShowFragment : Fragment(), AzShowAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
         lateinit var meal:List<Meal>
         var arg = arguments.let {
-            AzShowFragmentArgs?.fromBundle(it!!)
+                AzShowFragmentArgs?.fromBundle(it!!)
         }
-        var msg = arg?.Arg
+        var msg = arg?.arg
 
 //        var mealViewModel:MealViewModel
 //        mealViewModel = ViewModelProvider(this).get(MealViewModel::class.java)

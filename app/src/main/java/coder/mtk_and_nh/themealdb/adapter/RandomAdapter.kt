@@ -15,7 +15,7 @@ class RandomAdapter (var randomList : List<Meal> = ArrayList<Meal>()) : Recycler
 
     var clickListener : ClickListener? = null
 
-    fun setOnClickListener (clickListener: ClickListener){
+    fun setOnClickListenerRandom (clickListener: ClickListener){
         this.clickListener = clickListener
     }
 

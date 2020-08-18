@@ -57,6 +57,7 @@ class CategoryAdapter (var categoryList : List<Category> = ArrayList<Category>()
     }
 
     interface ClickListener {
+
         fun onClickCategroy  (category: Category)
     }
 

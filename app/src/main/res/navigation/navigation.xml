@@ -19,6 +19,12 @@
         <action
             android:id="@+id/action_mainFragment_to_categoryFilterFragment"
             app:destination="@id/categoryFilterFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_azListFragment"
+            app:destination="@id/azListFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/countryListFragment"
@@ -37,6 +43,9 @@
         <argument
             android:name="area"
             app:argType="string" />
+        <action
+            android:id="@+id/action_areaFilterFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/ingredientListFragment"
@@ -55,6 +64,9 @@
         <argument
             android:name="ingredient"
             app:argType="string" />
+        <action
+            android:id="@+id/action_ingredientFilterFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoryFilterFragment"
@@ -63,6 +75,38 @@
         tools:layout="@layout/fragment_category_filter" >
         <argument
             android:name="category"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_categoryFilterFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/azListFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.AzListFragment"
+        android:label="fragment_az_list"
+        tools:layout="@layout/fragment_az_list" >
+        <action
+            android:id="@+id/action_azListFragment_to_azShowFragment"
+            app:destination="@id/azShowFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/azShowFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.AzShowFragment"
+        android:label="fragment_az_show"
+        tools:layout="@layout/fragment_az_show" >
+        <action
+            android:id="@+id/action_azShowFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="arg"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="coder.mtk_and_nh.themealdb.fragments.DetailFragment"
+        android:label="DetailFragment" >
+        <argument
+            android:name="id"
             app:argType="string" />
     </fragment>
 </navigation>
