@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import coder.mtk_and_nh.themealdb.R
 import coder.mtk_and_nh.themealdb.apinh.ApiClient
 import coder.mtk_and_nh.themealdb.model.nhmodel.Detail
+import coder.mtk_and_nh.themealdb.model.nhmodel.Meal
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_detail.*
 import retrofit2.Call
@@ -27,7 +28,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-lateinit var ingredient :String
+lateinit var showIngredient : List<String>
 
         var arg = arguments.let { DetailFragmentArgs.fromBundle(it!!) }
         var msg = arg.id
@@ -47,28 +48,39 @@ lateinit var ingredient :String
                 textView3.text = response.body()!!.meals[0].strArea
                 Picasso.get().load(response.body()!!.meals[0].strMealThumb).into(imageView)
                 textView4.text = response.body()!!.meals[0].strInstructions
-                var ingredients = response.body()!!.meals[0].strIngredient1
+                var meals = response.body()!!.meals
+
+                cd1.setOnClickListener {
 
 
+                    val builder = AlertDialog.Builder(context)
+                    val title = builder.setTitle("Ingredients")
+                    var toShowIngredients = arrayOf(
+                        meals[0].strIngredient1,
+                        meals[0].strIngredient2,
+                        meals[0].strIngredient3,
+                        meals[0].strIngredient4,
+                        meals[0].strIngredient5,
+                        meals[0].strIngredient6,
+                        meals[0].strIngredient7,
+                        meals[0].strIngredient8,
+                        meals[0].strIngredient9,
+                        meals[0].strIngredient10,
+                        meals[0].strIngredient11,
+                        meals[0].strIngredient12,
+                        meals[0].strIngredient13,
+                        meals[0].strIngredient14,
+                        meals[0].strIngredient15
+//                        meals[0].strIngredient17,
+//                        meals[0].strIngredient18,
+//                        meals[0].strIngredient19,
+//                        meals[0].strIngredient20
+                    )
 
-
-              ingredient = ingredients
-//                var mealxx = response.body()!!.meals
-//                var meal = mealxx[msg.toInt()]
-//                textView2.text = meal.strCategory.toString()
-            }
-
-
-        })
-
-        cd1.setOnClickListener{
-
-            val builder = AlertDialog.Builder(context)
-            builder.setTitle("Ingredients")
-            builder.setMessage(ingredient)
-
-            val alertDialog:AlertDialog = builder.create()
-            alertDialog.show()
+                    builder.setItems(toShowIngredients) { dialog, which ->
+                    }
+                    val dialog = builder.create()
+                    dialog.show()
 //            builder.setPositiveButton("Yes"){
 //
 //                dialogInterface, which -> Toast.makeText(context,"clicked yes",Toast.LENGTH_LONG).show()
@@ -80,11 +92,24 @@ lateinit var ingredient :String
 //            }
 
 
-        }
+                    //  showIngredient = toShowIngredients
+//
+//                var mealxx = response.body()!!.meals
+//                var meal = mealxx[msg.toInt()]
+//                textView2.text = meal.strCategory.toString()
+                }
 
-    }
+            }
+
+            })
+
+
+
+        }
+}
 
 //    fun detailCall() {
 //
 //    }
-}
+
+

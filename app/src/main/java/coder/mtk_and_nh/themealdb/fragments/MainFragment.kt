@@ -41,16 +41,18 @@ class MainFragment : Fragment() ,  CategoryAdapter.ClickListener , RandomAdapter
 
         viewModel.loadCategory()
 
-        categoryAdapter = CategoryAdapter()
-
-        categoriesRecycler.layoutManager = GridLayoutManager(context,3)
-
         viewModel.getCategory().observe(
             viewLifecycleOwner, Observer {
                 categoryAdapter.updateCategoryList(it.categories)
                 categoriesRecycler.adapter = categoryAdapter
             }
         )
+
+        categoryAdapter = CategoryAdapter()
+
+        categoriesRecycler.layoutManager = GridLayoutManager(context,3)
+
+
 
         categoryAdapter.setOnClickListenerCategory(this)
 
